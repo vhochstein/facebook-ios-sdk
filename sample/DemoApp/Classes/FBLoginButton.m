@@ -19,11 +19,14 @@
 
 #import <dlfcn.h>
 
+static NSString* kFBConnectImagePath = @"FBConnect.bundle/images/";
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 @implementation FBLoginButton
 
 @synthesize isLoggedIn = _isLoggedIn;
+@synthesize useLabelImage = _useLabelImage;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // private
@@ -33,9 +36,13 @@
  */
 - (UIImage*)buttonImage {
   if (_isLoggedIn) {
-    return [UIImage imageNamed:@"FBConnect.bundle/images/LogoutNormal.png"];
+    return [UIImage imageNamed:[kFBConnectImagePath stringByAppendingString:@"LogoutNormal.png"]];
   } else {
-    return [UIImage imageNamed:@"FBConnect.bundle/images/LoginNormal.png"];
+    if (_useLabelImage) {
+      return [UIImage imageNamed:[kFBConnectImagePath stringByAppendingString:@"LoginWithFacebookNormal.png"]];
+    } else {
+      return [UIImage imageNamed:[kFBConnectImagePath stringByAppendingString:@"LoginNormal.png"]];
+    }
   }
 }
 
@@ -44,9 +51,13 @@
  */
 - (UIImage*)buttonHighlightedImage {
   if (_isLoggedIn) {
-    return [UIImage imageNamed:@"FBConnect.bundle/images/LogoutPressed.png"];
+    return [UIImage imageNamed:[kFBConnectImagePath stringByAppendingString:@"LogoutPressed.png"]];
   } else {
-    return [UIImage imageNamed:@"FBConnect.bundle/images/LoginPressed.png"];
+    if (_useLabelImage) {
+      return [UIImage imageNamed:[kFBConnectImagePath stringByAppendingString:@"LoginWithFacebookPressed.png"]];
+    } else {
+      return [UIImage imageNamed:[kFBConnectImagePath stringByAppendingString:@"LoginPressed.png"]];
+    }
   }
 }
 

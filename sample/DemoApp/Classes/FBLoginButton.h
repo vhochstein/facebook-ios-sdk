@@ -22,9 +22,11 @@
  */
 @interface FBLoginButton : UIButton {
   BOOL  _isLoggedIn;
+  BOOL  _useLabelImage;
 }
 
 @property(nonatomic) BOOL isLoggedIn; 
+@property(nonatomic) BOOL useLabelImage; 
 
 - (void) updateImage;
 
